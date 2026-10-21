@@ -29,11 +29,11 @@ beforeAll(async () => {
     revokeObjectURL: vi.fn(),
   }));
   vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => {});
-  await import('../../web/static/js/warehouse.mjs');
 });
 
 describe('warehouse browser authentication', () => {
   it('sends the session token as a header for listing and authenticated downloads, never in the URL', async () => {
+    await import('../../web/static/js/warehouse.mjs');
     await vi.waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(1));
     const download = await vi.waitFor(() => {
       const button = document.querySelector<HTMLButtonElement>('button.download');
